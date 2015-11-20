@@ -14,10 +14,14 @@ the Pandora source code.
 3. Using simple Makefiles and the PandoraPFA metadata package
 4. Using simple Makefiles for each individual package
 
+Tested with:
+-Scientific Linux CERN SLC release 6.7, gcc 4.9.3, ROOT 5.34.32
+-OSX El Capitan, 10.11.1, Apple LLVM 7.0.0 (clang-700.1.76), ROOT 5.34.32
 
-Note 1: PandoraSDK, PandoraMonitoring and LCContent do support
-(with reduced functionality) the c++98/03 standard, c++11 is
-recommended and is mandatory for some packages.
+
+Note 1: Whilst PandoraSDK, PandoraMonitoring and LCContent do
+currently support (with reduced functionality) the c++98/03
+standard, c++11 is recommended and is mandatory for some packages.
 
 Note 2: PandoraMonitoring functionality is optional, but its
 usage is assumed throughout the following examples. It is
@@ -25,8 +29,6 @@ hopefully clear how to opt-out of PandoraMonitoring and ROOT.
 
 Note 3: The environment variable ROOTSYS is used below and may
 need to be specified/replaced carefully on some systems.
-
-Note 4: Tested on SLC6, using gcc 4.9.3 and ROOT 5.34.32.
 
 
 -----------------------------------------------------------------
