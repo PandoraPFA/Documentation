@@ -1,0 +1,208 @@
+-----------------------------------------------------------------
+Pandora build instructions / suggestions
+-----------------------------------------------------------------
+As with any multi-library application, there are a number of
+different ways in which one can choose to structure and build
+your Pandora application.
+
+This document provides a few detailed examples, working with
+either the CMake files or the simple Makefiles provided alongside
+the Pandora source code.
+
+1. Using CMake and the PandoraPFA metadata package
+2. Using CMake for each individual package
+3. Using simple Makefiles and the PandoraPFA metadata package
+4. Using simple Makefiles for each individual package
+
+
+Note 1: PandoraSDK, PandoraMonitoring and LCContent do support
+(with reduced functionality) the c++98/03 standard, c++11 is
+recommended and is mandatory for some packages.
+
+Note 2: PandoraMonitoring functionality is optional, but its
+usage is assumed throughout the following examples. It is
+hopefully clear how to opt-out of PandoraMonitoring and ROOT.
+
+Note 3: The environment variable ROOTSYS is used below and may
+need to be specified/replaced carefully on some systems.
+
+
+-----------------------------------------------------------------
+1. Using CMake and the PandoraPFA metadata package
+-----------------------------------------------------------------
+cd $MY_TEST_AREA
+git clone https://github.com/PandoraPFA/PandoraPFA.git
+cd PandoraPFA
+git tag # select your chosen tag, defining all daughter library tags
+git checkout v02-03-01
+mkdir build
+cd build
+cmake -DCMAKE_MODULE_PATH=$ROOTSYS/etc/cmake -DPANDORA_MONITORING=ON -DPANDORA_EXAMPLE_CONTENT=OFF -DPANDORA_LAR_CONTENT=ON -DPANDORA_LC_CONTENT=OFF ..
+make -j4 install
+
+cd $MY_TEST_AREA
+git clone https://github.com/PandoraPFA/LArReco.git
+cd LArReco
+git tag
+git checkout v02-03-00
+mkdir build
+cd build
+cmake -DCMAKE_MODULE_PATH="$MY_TEST_AREA/PandoraPFA/cmakemodules;$ROOTSYS/etc/cmake" -DPANDORA_MONITORING=ON -DPandoraSDK_DIR=$MY_TEST_AREA/PandoraPFA/ -DPandoraMonitoring_DIR=$MY_TEST_AREA/PandoraPFA/ -DLArContent_DIR=$MY_TEST_AREA/PandoraPFA/ ..
+make -j4 install
+
+$MY_TEST_AREA/LArReco/bin/PandoraInterface -h
+
+./bin/PandoraInterface
+    -i PandoraSettings.xml  (mandatory)
+    -d WhichDetector        (optional)
+    -n NEventsToProcess     (optional)
+    -N                      (optional, display event numbers)
+    -t                      (optional, display event times)
+
+Note: In this configuration, you will want to read-in events via
+e.g. the EventReading algorithm, configured in the specified
+PandoraSettings file. This will need to provide a fully-qualified
+path to the valid input .pndr or .xml file.
+
+
+-----------------------------------------------------------------
+2. Using CMake for each individual package
+-----------------------------------------------------------------
+cd $MY_TEST_AREA
+git clone https://github.com/PandoraPFA/PandoraPFA.git # still need this for the CMake modules
+cd PandoraPFA
+git tag
+git checkout v02-03-01
+
+cd $MY_TEST_AREA
+git clone https://github.com/PandoraPFA/PandoraSDK.git
+cd PandoraSDK
+git tag
+git checkout v02-01-00 # now need to select all package tags manually
+mkdir build
+cd build
+cmake -DCMAKE_MODULE_PATH=$MY_TEST_AREA/PandoraPFA/cmakemodules ..
+make -j4 install
+
+cd $MY_TEST_AREA
+git clone https://github.com/PandoraPFA/PandoraMonitoring.git
+cd PandoraMonitoring
+git tag
+git checkout v02-01-00
+mkdir build
+cd build
+cmake -DCMAKE_MODULE_PATH="$MY_TEST_AREA/PandoraPFA/cmakemodules;$ROOTSYS/etc/cmake" -DPandoraSDK_DIR=$MY_TEST_AREA/PandoraSDK ..
+make -j4 install
+
+cd $MY_TEST_AREA
+git clone https://github.com/PandoraPFA/LArContent.git
+cd LArContent
+git tag
+git checkout v02-03-00
+mkdir build
+cd build
+cmake -DCMAKE_MODULE_PATH="$MY_TEST_AREA/PandoraPFA/cmakemodules;$ROOTSYS/etc/cmake" -DPANDORA_MONITORING=ON -DPandoraSDK_DIR=$MY_TEST_AREA/PandoraSDK -DPandoraMonitoring_DIR=$MY_TEST_AREA/PandoraMonitoring ..
+make -j4 install
+
+cd $MY_TEST_AREA
+git clone https://github.com/PandoraPFA/LArReco.git
+cd LArReco
+git tag
+git checkout v02-03-00
+mkdir build
+cd build
+cmake -DCMAKE_MODULE_PATH="$MY_TEST_AREA/PandoraPFA/cmakemodules;$ROOTSYS/etc/cmake" -DPANDORA_MONITORING=ON -DPandoraSDK_DIR=$MY_TEST_AREA/PandoraSDK/ -DPandoraMonitoring_DIR=$MY_TEST_AREA/PandoraMonitoring/ -DLArContent_DIR=$MY_TEST_AREA/LArContent/ ..
+make -j4 install
+
+$MY_TEST_AREA/LArReco/bin/PandoraInterface -h # as for example 1.
+
+
+-----------------------------------------------------------------
+3. Using simple Makefiles and the PandoraPFA metadata package
+-----------------------------------------------------------------
+cd $MY_TEST_AREA
+git clone https://github.com/PandoraPFA/PandoraPFA.git
+cd PandoraPFA
+git tag
+git checkout v02-03-01
+
+cd $MY_TEST_AREA/PandoraPFA
+git clone https://github.com/PandoraPFA/PandoraSDK.git PandoraSDK
+cd PandoraSDK
+git tag
+git checkout v02-01-00 # without cmake, need to select all package tags manually
+
+cd $MY_TEST_AREA/PandoraPFA
+git clone https://github.com/PandoraPFA/PandoraMonitoring.git PandoraMonitoring
+cd PandoraMonitoring
+git tag
+git checkout v02-01-00
+
+cd $MY_TEST_AREA/PandoraPFA
+git clone https://github.com/PandoraPFA/LArContent.git LArContent
+cd LArContent
+git tag
+git checkout v02-03-00
+
+cd $MY_TEST_AREA/PandoraPFA
+mkdir include lib
+make -j4 MONITORING=1 PANDORA_DIR=$MY_TEST_AREA/PandoraPFA
+make install MONITORING=1 PANDORA_DIR=$MY_TEST_AREA/PandoraPFA INCLUDE_TARGET=$MY_TEST_AREA/PandoraPFA/include # optional
+
+cd $MY_TEST_AREA
+git clone https://github.com/PandoraPFA/LArReco.git
+cd LArReco
+git tag
+git checkout v02-03-00
+mkdir bin
+make -j4 MONITORING=1 PROJECT_DIR=$MY_TEST_AREA/LArReco PANDORA_DIR=$MY_TEST_AREA/PandoraPFA
+
+export LD_LIBRARY_PATH=$MY_TEST_AREA/PandoraPFA/lib:$LD_LIBRARY_PATH
+
+$MY_TEST_AREA/LArReco/bin/PandoraInterface -h # as for example 1.
+
+
+-----------------------------------------------------------------
+4. Using simple Makefiles for each individual package
+-----------------------------------------------------------------
+cd $MY_TEST_AREA
+mkdir lib
+export LD_LIBRARY_PATH=$MY_TEST_AREA/lib:$LD_LIBRARY_PATH
+
+git clone https://github.com/PandoraPFA/PandoraSDK.git PandoraSDK
+cd PandoraSDK
+git tag
+git checkout v02-01-00 # without cmake, need to select all package tags manually
+mkdir lib
+make -j4 PROJECT_DIR=$MY_TEST_AREA/PandoraSDK
+make install PROJECT_DIR=$MY_TEST_AREA/PandoraSDK LIB_TARGET=$MY_TEST_AREA/lib
+
+cd $MY_TEST_AREA
+git clone https://github.com/PandoraPFA/PandoraMonitoring.git
+cd PandoraMonitoring
+git tag
+git checkout v02-01-00
+mkdir lib
+make -j4 MONITORING=1 PROJECT_DIR=$MY_TEST_AREA/PandoraMonitoring PANDORA_DIR=$MY_TEST_AREA
+make install MONITORING=1 PROJECT_DIR=$MY_TEST_AREA/PandoraMonitoring PANDORA_DIR=$MY_TEST_AREA LIB_TARGET=$MY_TEST_AREA/lib
+
+cd $MY_TEST_AREA
+git clone https://github.com/PandoraPFA/LArContent.git
+cd LArContent
+git tag
+git checkout v02-03-00
+mkdir lib
+make -j4 MONITORING=1 PROJECT_DIR=$MY_TEST_AREA/LArContent PANDORA_DIR=$MY_TEST_AREA
+make install MONITORING=1 PROJECT_DIR=$MY_TEST_AREA/LArContent PANDORA_DIR=$MY_TEST_AREA LIB_TARGET=$MY_TEST_AREA/lib
+
+cd $MY_TEST_AREA
+git clone https://github.com/PandoraPFA/LArReco.git
+cd LArReco
+git tag
+git checkout v02-03-00
+mkdir bin
+make -j4 MONITORING=1 PROJECT_DIR=$MY_TEST_AREA/LArReco PANDORA_DIR=$MY_TEST_AREA
+
+$MY_TEST_AREA/LArReco/bin/PandoraInterface -h # as for example 1.
+
+
