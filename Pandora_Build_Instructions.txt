@@ -26,6 +26,8 @@ hopefully clear how to opt-out of PandoraMonitoring and ROOT.
 Note 3: The environment variable ROOTSYS is used below and may
 need to be specified/replaced carefully on some systems.
 
+Note 4: Tested on SLC6, using gcc 4.9.3 and ROOT 5.34.32.
+
 
 -----------------------------------------------------------------
 1. Using CMake and the PandoraPFA metadata package
