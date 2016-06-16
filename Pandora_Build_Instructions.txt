@@ -20,7 +20,7 @@ Build notes
 -----------------------------------------------------------------
 1. These instructions have been tested with:
 -Scientific Linux CERN SLC release 6.7, gcc 4.9.3, ROOT 5.34.32
--OSX El Capitan, 10.11.1, Apple LLVM 7.0.0 (clang-700.1.76), ROOT 5.34.32
+-OSX El Capitan, 10.11.5, Apple LLVM 7.0.2 (clang-700.1.81), ROOT 5.34.32
 
 2. Whilst PandoraSDK, PandoraMonitoring and LCContent do
 currently support (with reduced functionality) the c++98/03
@@ -47,10 +47,10 @@ Recommended library/application versions
 Use 'git tag' to check the list of available tags.
 Current recommended versions are as defined below:
 
-export PANDORA_PFA_VERSION=v02-08-01
+export PANDORA_PFA_VERSION=v02-08-03
 export PANDORA_SDK_VERSION=v02-03-00
 export PANDORA_MONITORING_VERSION=v02-03-00
-export PANDORA_LAR_CONTENT_VERSION=v02-07-01
+export PANDORA_LAR_CONTENT_VERSION=v02_07_04
 export PANDORA_LC_CONTENT_VERSION=v02-03-00
 export PANDORA_EXAMPLE_CONTENT_VERSION=v02-01-02
 export PANDORA_LAR_RECO_VERSION=v02-07-01
