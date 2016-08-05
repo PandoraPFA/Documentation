@@ -14,12 +14,23 @@ the Pandora source code.
 3. Using simple Makefiles and the PandoraPFA metadata package
 4. Using simple Makefiles for each individual package
 
+This document describes how to build the core Pandora packages
+(PandoraSDK and PandoraMonitoring), the library of LAr TPC algorithms
+and tools (LArContent) and a simple client application for developing
+algorithms in the Pandora LAr TPC standalone environment (LArReco).
+
+Your use-case will likely differ (different content library needed
+or, most likely, use of a different client application required).
+If it is at all unclear how to adapt these instructions to your
+circumstances, please get in touch: marshall AT hep.phy.cam.ac.uk
+
 
 -----------------------------------------------------------------
 Build notes
 -----------------------------------------------------------------
 1. These instructions have been tested with:
 -Scientific Linux CERN SLC release 6.7, gcc 4.9.3, ROOT 5.34.32
+-Scientific Linux CERN SLC release 6.7, gcc 4.9.3, ROOT 6.06.04
 -OSX El Capitan, 10.11.5, Apple LLVM 7.0.2 (clang-700.1.81), ROOT 5.34.32
 
 2. Whilst PandoraSDK, PandoraMonitoring and LCContent do
@@ -47,14 +58,14 @@ Recommended library/application versions
 Use 'git tag' to check the list of available tags.
 Current recommended versions are as defined below:
 
-export PANDORA_PFA_VERSION=v02-08-03
-export PANDORA_SDK_VERSION=v02-03-00
+export PANDORA_PFA_VERSION=v02-09-00
+export PANDORA_SDK_VERSION=v02-03-01
 export PANDORA_MONITORING_VERSION=v02-03-00
 export PANDORA_LAR_CONTENT_VERSION=v02_07_04
-export PANDORA_LC_CONTENT_VERSION=v02-03-00
+export PANDORA_LC_CONTENT_VERSION=v02-04-00
 export PANDORA_EXAMPLE_CONTENT_VERSION=v02-01-02
-export PANDORA_LAR_RECO_VERSION=v02-07-01
-export PANDORA_LC_RECO_VERSION=v02-03-00
+export PANDORA_LAR_RECO_VERSION=v02-07-04
+export PANDORA_LC_RECO_VERSION=v02-04-00
 
 export MY_TEST_AREA=/path/to/your/test/area
 
