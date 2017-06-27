@@ -1,11 +1,10 @@
------------------------------------------------------------------
-Pandora build instructions / suggestions
------------------------------------------------------------------
+# Pandora build instructions / suggestions
+
 As with any multi-library application, there are a number of
 different ways in which one can choose to structure and build
 your Pandora application.
 
-This document provides a few detailed examples, working with
+A few detailed examples are presented below, working with
 either the CMake files or the simple Makefiles provided alongside
 the Pandora source code.
 
@@ -24,10 +23,7 @@ or, most likely, use of a different client application required).
 If it is at all unclear how to adapt these instructions to your
 circumstances, please get in touch: marshall AT hep.phy.cam.ac.uk
 
-
------------------------------------------------------------------
-Build notes
------------------------------------------------------------------
+## Build notes
 1. These instructions have been tested with:
 -Scientific Linux CERN SLC release 6.7, gcc 4.9.3, ROOT 5.34.32
 -Scientific Linux CERN SLC release 6.7, gcc 4.9.3, ROOT 6.06.04
@@ -37,13 +33,11 @@ Build notes
 currently support (with reduced functionality) the c++98/03
 standard, c++11 is recommended and is mandatory for some packages.
 
-3.1. PandoraMonitoring functionality is optional, but its
-usage is assumed throughout the following examples. It is
-hopefully clear how to opt-out of PandoraMonitoring and ROOT.
-
-3.2. It is assumed that the user has already built ROOT, including
-the EVE libraries. The environment variable ROOTSYS is used below
-and may need to be specified/replaced carefully on some systems.
+3. PandoraMonitoring functionality is optional, but its
+usage is assumed throughout the following examples. It is assumed 
+that the user has already built ROOT, including the EVE libraries.
+The environment variable ROOTSYS is used below and may need to be 
+specified/replaced carefully on some systems.
 
 4. Using CMake, the user may find that the identified C and C++
 compilers revert to the system default compilers. If the intention
@@ -51,13 +45,10 @@ is to pick-up alternative compilers, either specify CC and CXX
 environment variables or provide the additional CMake arguments:
 -DCMAKE_C_COMPILER=/your/cc/path and -DCMAKE_CXX_COMPILER=/your/c++/path
 
-
------------------------------------------------------------------
-Recommended library/application versions
------------------------------------------------------------------
+## Recommended library/application versions
 Use 'git tag' to check the list of available tags.
 Current recommended versions are as defined below:
-
+```
 export PANDORA_PFA_VERSION=v03-04-00
 export PANDORA_SDK_VERSION=v03-00-01
 export PANDORA_MONITORING_VERSION=v03-01-00
@@ -68,10 +59,10 @@ export PANDORA_LAR_RECO_VERSION=v03-07-00
 export PANDORA_LC_RECO_VERSION=v03-00-02
 
 export MY_TEST_AREA=/path/to/your/test/area
+```
 
------------------------------------------------------------------
-1. Using CMake and the PandoraPFA metadata package
------------------------------------------------------------------
+## 1. Using CMake and the PandoraPFA metadata package
+```
 cd $MY_TEST_AREA
 git clone https://github.com/PandoraPFA/PandoraPFA.git
 cd PandoraPFA
@@ -98,16 +89,14 @@ $MY_TEST_AREA/LArReco/bin/PandoraInterface -h
     -n NEventsToProcess     (optional)
     -N                      (optional, display event numbers)
     -t                      (optional, display event times)
-
+```
 Note: In this configuration, you will want to read-in events via
 e.g. the EventReading algorithm, configured in the specified
 PandoraSettings file. This will need to provide a fully-qualified
 path to the valid input .pndr or .xml file.
 
-
------------------------------------------------------------------
-2. Using CMake for each individual package
------------------------------------------------------------------
+## 2. Using CMake for each individual package
+```
 cd $MY_TEST_AREA
 git clone https://github.com/PandoraPFA/PandoraPFA.git # still need this for the CMake modules
 cd PandoraPFA
@@ -160,11 +149,9 @@ cmake -DCMAKE_MODULE_PATH="$MY_TEST_AREA/PandoraPFA/cmakemodules;$ROOTSYS/etc/cm
 make -j4 install
 
 $MY_TEST_AREA/LArReco/bin/PandoraInterface -h # as for example 1.
-
-
------------------------------------------------------------------
-3. Using simple Makefiles and the PandoraPFA metadata package
------------------------------------------------------------------
+```
+## 3. Using simple Makefiles and the PandoraPFA metadata package
+```
 cd $MY_TEST_AREA
 git clone https://github.com/PandoraPFA/PandoraPFA.git
 cd PandoraPFA
@@ -205,11 +192,9 @@ make -j4 MONITORING=1 PROJECT_DIR=$MY_TEST_AREA/LArReco PANDORA_DIR=$MY_TEST_ARE
 export LD_LIBRARY_PATH=$MY_TEST_AREA/PandoraPFA/lib:$LD_LIBRARY_PATH
 
 $MY_TEST_AREA/LArReco/bin/PandoraInterface -h # as for example 1.
-
-
------------------------------------------------------------------
-4. Using simple Makefiles for each individual package
------------------------------------------------------------------
+```
+## 4. Using simple Makefiles for each individual package
+```
 cd $MY_TEST_AREA
 mkdir lib
 export LD_LIBRARY_PATH=$MY_TEST_AREA/lib:$LD_LIBRARY_PATH
@@ -250,3 +235,4 @@ mkdir bin
 make -j4 MONITORING=1 PROJECT_DIR=$MY_TEST_AREA/LArReco PANDORA_DIR=$MY_TEST_AREA
 
 $MY_TEST_AREA/LArReco/bin/PandoraInterface -h # as for example 1.
+```
