@@ -25,9 +25,8 @@ circumstances, please get in touch: marshall AT hep.phy.cam.ac.uk
 
 ## Build notes
 1. These instructions have been tested with:
--Scientific Linux CERN SLC release 6.7, gcc 4.9.3, ROOT 5.34.32
--Scientific Linux CERN SLC release 6.7, gcc 4.9.3, ROOT 6.06.04
--OSX El Capitan, 10.11.5, Apple LLVM 7.0.2 (clang-700.1.81), ROOT 5.34.32
+-Scientific Linux CERN SLC release 6.9, gcc 4.9.3, ROOT 6.06.08
+-macOS Sierra, 10.12.6, Apple LLVM version 8.1.0 (clang-802.0.42), ROOT 6.08.02
 
 2. Whilst PandoraSDK, PandoraMonitoring and LCContent do
 currently support (with reduced functionality) the c++98/03
@@ -84,16 +83,19 @@ make -j4 install
 $MY_TEST_AREA/LArReco/bin/PandoraInterface -h
 
 ./bin/PandoraInterface
-    -i PandoraSettings.xml  (mandatory)
-    -d WhichDetector        (optional)
-    -n NEventsToProcess     (optional)
-    -N                      (optional, display event numbers)
-    -t                      (optional, display event times)
+    -r RecoOption          (required) [Full, AllHitsCR, AllHitsNu, CRRemHitsSliceCR, CRRemHitsSliceNu, AllHitsSliceCR, AllHitsSliceNu]
+    -i Settings            (required) [algorithm description: xml]
+    -e EventFileList       (required) [colon-separated list of files: xml/pndr]
+    -v DriftVolumeFile     (required) [drift volume description: xml]
+    -g GeometryFile        (optional) [detector gap description: xml/pndr]
+    -t StitchingSettings   (optional) [stitching algorithm description: xml]
+    -n NEventsToProcess    (optional) [no. of events to process]
+    -s NEventsToSkip       (optional) [no. of events to skip in first file]
+    -p                     (optional) [print status]
+    -N                     (optional) [print event numbers]
 ```
-Note: In this configuration, you will want to read-in events via
-e.g. the EventReading algorithm, configured in the specified
-PandoraSettings file. This will need to provide a fully-qualified
-path to the valid input .pndr or .xml file.
+Note: In this configuration, you will need to read in events via e.g. the EventReading
+algorithm, configured in the specified settings file.
 
 ## 2. Using CMake for each individual package
 ```
