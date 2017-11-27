@@ -48,13 +48,13 @@ environment variables or provide the additional CMake arguments:
 Use 'git tag' to check the list of available tags.
 Current recommended versions are as defined below:
 ```
-export PANDORA_PFA_VERSION=v03-06-00
-export PANDORA_SDK_VERSION=v03-01-00
-export PANDORA_MONITORING_VERSION=v03-03-00
-export PANDORA_LAR_CONTENT_VERSION=v03_08_01
+export PANDORA_PFA_VERSION=v03-07-00
+export PANDORA_SDK_VERSION=v03-02-00
+export PANDORA_MONITORING_VERSION=v03-04-00
+export PANDORA_LAR_CONTENT_VERSION=v03_09_00
 export PANDORA_LC_CONTENT_VERSION=v03-01-01
 export PANDORA_EXAMPLE_CONTENT_VERSION=v03-00-02
-export PANDORA_LAR_RECO_VERSION=v03-08-01
+export PANDORA_LAR_RECO_VERSION=v03-09-00
 export PANDORA_LC_RECO_VERSION=v03-01-01
 
 export MY_TEST_AREA=/path/to/your/test/area
@@ -86,13 +86,11 @@ $MY_TEST_AREA/LArReco/bin/PandoraInterface -h
     -r RecoOption          (required) [Full, AllHitsCR, AllHitsNu, CRRemHitsSliceCR, CRRemHitsSliceNu, AllHitsSliceCR, AllHitsSliceNu]
     -i Settings            (required) [algorithm description: xml]
     -e EventFileList       (optional) [colon-separated list of files: xml/pndr]
-    -g GeometryFile        (optional) [detector gap description: xml/pndr]
-    -v NDriftVolumes       (optional) [number of drift volumes: default 1]
-    -t StitchingSettings   (optional) [stitching algorithm description: xml]
+    -g GeometryFile        (optional) [detector geometry description: xml/pndr]
     -n NEventsToProcess    (optional) [no. of events to process]
     -s NEventsToSkip       (optional) [no. of events to skip in first file]
-    -u                     (optional) [use unique settings file for each pandora instance]
     -p                     (optional) [print status]
+    -N                     (optional) [print event numbers]
 ```
 Note: In this configuration, you will need to read in events via e.g. the EventReading
 algorithm, configured in the specified settings file.
