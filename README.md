@@ -28,15 +28,16 @@ circumstances, please get in touch: marshall AT hep.phy.cam.ac.uk
 -Scientific Linux CERN SLC release 6.9, gcc 4.9.3, ROOT 6.06.08
 -macOS Sierra, 10.12.6, Apple LLVM version 8.1.0 (clang-802.0.42), ROOT 6.08.02
 
-2. Whilst PandoraSDK, PandoraMonitoring and LCContent do
-currently support (with reduced functionality) the c++98/03
-standard, c++11 is recommended and is mandatory for some packages.
-
-3. PandoraMonitoring functionality is optional, but its
+2. PandoraMonitoring functionality is optional, but its
 usage is assumed throughout the following examples. It is assumed 
 that the user has already built ROOT, including the EVE libraries.
 The environment variable ROOTSYS is used below and may need to be 
 specified/replaced carefully on some systems.
+
+3. c++11 is recommended and is mandatory for some packages. Using a version
+of ROOT built when demanding a more recent standard may force you to demand
+the same (or newer) standard when building PandoraMonitoring and LC/LArReco,
+despite the fact that these packages themselves only require c++11 support.
 
 4. Using CMake, the user may find that the identified C and C++
 compilers revert to the system default compilers. If the intention
@@ -48,14 +49,14 @@ environment variables or provide the additional CMake arguments:
 Use 'git tag' to check the list of available tags.
 Current recommended versions are as defined below:
 ```
-export PANDORA_PFA_VERSION=v03-07-00
-export PANDORA_SDK_VERSION=v03-02-00
+export PANDORA_PFA_VERSION=v03-08-00
+export PANDORA_SDK_VERSION=v03-02-01
 export PANDORA_MONITORING_VERSION=v03-04-00
-export PANDORA_LAR_CONTENT_VERSION=v03_09_00
-export PANDORA_LC_CONTENT_VERSION=v03-01-01
+export PANDORA_LAR_CONTENT_VERSION=v03_10_00
+export PANDORA_LC_CONTENT_VERSION=v03-01-02
 export PANDORA_EXAMPLE_CONTENT_VERSION=v03-00-02
-export PANDORA_LAR_RECO_VERSION=v03-09-00
-export PANDORA_LC_RECO_VERSION=v03-01-01
+export PANDORA_LAR_RECO_VERSION=v03-10-00
+export PANDORA_LC_RECO_VERSION=v03-01-02
 
 export MY_TEST_AREA=/path/to/your/test/area
 ```
