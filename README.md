@@ -26,6 +26,7 @@ circumstances, please get in touch: marshall AT hep.phy.cam.ac.uk
 ## Build notes
 1. These instructions have been tested with:
 -Scientific Linux CERN SLC release 6.9, gcc 4.9.3, ROOT 6.06.08
+-CentOS Linux release 7.4.1708, gcc 4.9.3, ROOT 6.06.08
 -macOS Sierra, 10.12.6, Apple LLVM version 8.1.0 (clang-802.0.42), ROOT 6.08.02
 
 2. PandoraMonitoring functionality is optional, but its
@@ -49,14 +50,14 @@ environment variables or provide the additional CMake arguments:
 Use 'git tag' to check the list of available tags.
 Current recommended versions are as defined below:
 ```
-export PANDORA_PFA_VERSION=v03-08-00
+export PANDORA_PFA_VERSION=v03-09-00
 export PANDORA_SDK_VERSION=v03-02-01
-export PANDORA_MONITORING_VERSION=v03-04-00
-export PANDORA_LAR_CONTENT_VERSION=v03_10_00
-export PANDORA_LC_CONTENT_VERSION=v03-01-02
+export PANDORA_MONITORING_VERSION=v03-04-01
+export PANDORA_LAR_CONTENT_VERSION=v03_11_00
+export PANDORA_LC_CONTENT_VERSION=v03-01-03
 export PANDORA_EXAMPLE_CONTENT_VERSION=v03-00-02
-export PANDORA_LAR_RECO_VERSION=v03-10-00
-export PANDORA_LC_RECO_VERSION=v03-01-02
+export PANDORA_LAR_RECO_VERSION=v03-11-00
+export PANDORA_LC_RECO_VERSION=v03-01-03
 
 export MY_TEST_AREA=/path/to/your/test/area
 ```
