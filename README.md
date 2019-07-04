@@ -18,10 +18,8 @@ This document describes how to build the core Pandora packages
 and tools (LArContent) and a simple client application for developing
 algorithms in the Pandora LAr TPC standalone environment (LArReco).
 
-Your use-case will likely differ (different content library needed
-or, most likely, use of a different client application required).
 If it is at all unclear how to adapt these instructions to your
-circumstances, please get in touch: marshall AT hep.phy.cam.ac.uk
+circumstances, please get in touch: john.marshall AT warwick.ac.uk
 
 ## Build notes
 1. These instructions have been tested with:
@@ -29,18 +27,24 @@ circumstances, please get in touch: marshall AT hep.phy.cam.ac.uk
 -CentOS Linux release 7.5.1804, gcc 6.4.0, ROOT 6.12.04
 -macOS Sierra, 10.12.6, Apple LLVM version 8.1.0 (clang-802.0.42), ROOT 6.08.02
 
-2. PandoraMonitoring functionality is optional, but its
+2. Please note that some configurations of the LArReco application now require
+access to files maintained in the PandoraPFA/LArMachineLearningData repository.
+Users requiring these files should clone this repository, checkout the tag 
+matching the PANDORA_LAR_CONTENT_VERSION below then add the directory path to
+the colon-separated list stored in the FW_SEARCH_PATH environment variable.
+
+3. PandoraMonitoring functionality is optional, but its
 usage is assumed throughout the following examples. It is assumed 
 that the user has already built ROOT, including the EVE libraries.
 The environment variable ROOTSYS is used below and may need to be 
 specified/replaced carefully on some systems.
 
-3. c++11 is recommended and is mandatory for some packages. Using a version
-of ROOT built when demanding a more recent standard may force you to demand
-the same (or newer) standard when building PandoraMonitoring and LC/LArReco,
-despite the fact that these packages themselves only require c++11 support.
+4. c++11 is now mandatory for Pandora packages. Using a version of ROOT built
+when demanding a more recent standard may force you to demand a newer
+standard when building PandoraMonitoring and LC/LArReco, despite the fact that
+these packages themselves only require c++11 support.
 
-4. Using CMake, the user may find that the identified C and C++
+5. Using CMake, the user may find that the identified C and C++
 compilers revert to the system default compilers. If the intention
 is to pick-up alternative compilers, either specify CC and CXX
 environment variables or provide the additional CMake arguments:
@@ -50,10 +54,10 @@ environment variables or provide the additional CMake arguments:
 Use 'git tag' to check the list of available tags.
 Current recommended versions are as defined below:
 ```
-export PANDORA_PFA_VERSION=v03-12-01
+export PANDORA_PFA_VERSION=v03-13-00
 export PANDORA_SDK_VERSION=v03-03-02
 export PANDORA_MONITORING_VERSION=v03-04-01
-export PANDORA_LAR_CONTENT_VERSION=v03_14_05
+export PANDORA_LAR_CONTENT_VERSION=v03_15_00
 export PANDORA_LC_CONTENT_VERSION=v03-01-03
 export PANDORA_EXAMPLE_CONTENT_VERSION=v03-00-02
 export PANDORA_LAR_RECO_VERSION=v03-14-05
