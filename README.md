@@ -23,32 +23,42 @@ circumstances, please get in touch: john.marshall AT warwick.ac.uk
 
 ## Build notes
 1. These instructions have been tested with:
--Scientific Linux CERN SLC release 6.9, gcc 4.9.3, ROOT 6.06.08
--CentOS Linux release 7.5.1804, gcc 6.4.0, ROOT 6.12.04
--macOS Sierra, 10.12.6, Apple LLVM version 8.1.0 (clang-802.0.42), ROOT 6.08.02
+-CentOS Linux release 7.6.1810, gcc 7.3.0, ROOT 6.16.00, TensorFlow 1.12.0
+-macOS Sierra, 10.14.5, Apple LLVM version 10.0.0 (clang-1000.11.45.5), ROOT 6.16.00, TensorFlow 1.12.0
 
-2. Please note that some configurations of the LArReco application now require
+2. TensorFlow is now required by the Pandora LArContent library, and the build steps
+below require the environment variables TENSORFLOW_LIB and TENSORFLOW_INC to specify
+paths to the tensforflow-core library and tensorflow headers
+
+3. Please note that some configurations of the LArReco application now require
 access to files maintained in the PandoraPFA/LArMachineLearningData repository.
 Users requiring these files should clone this repository, checkout the tag 
 matching the PANDORA_LAR_CONTENT_VERSION below then add the directory path to
 the colon-separated list stored in the FW_SEARCH_PATH environment variable.
 
-3. PandoraMonitoring functionality is optional, but its
+4. PandoraMonitoring functionality is optional, but its
 usage is assumed throughout the following examples. It is assumed 
 that the user has already built ROOT, including the EVE libraries.
 The environment variable ROOTSYS is used below and may need to be 
 specified/replaced carefully on some systems.
 
-4. c++11 is now mandatory for Pandora packages. Using a version of ROOT built
+5. c++11 is now mandatory for Pandora packages. Using a version of ROOT built
 when demanding a more recent standard may force you to demand a newer
 standard when building PandoraMonitoring and LC/LArReco, despite the fact that
 these packages themselves only require c++11 support.
 
-5. Using CMake, the user may find that the identified C and C++
+6. Using CMake, the user may find that the identified C and C++
 compilers revert to the system default compilers. If the intention
 is to pick-up alternative compilers, either specify CC and CXX
 environment variables or provide the additional CMake arguments:
 -DCMAKE_C_COMPILER=/your/cc/path and -DCMAKE_CXX_COMPILER=/your/c++/path
+
+A suggested setup for those with access to /cvmfs/larsoft.opensciencegrid.org:
+```
+source /cvmfs/larsoft.opensciencegrid.org/products/setups
+setup root v6_16_00 -q e17:prof
+setup tensorflow v1_12_0b -q e17:prof
+```
 
 ## Recommended library/application versions
 Use 'git tag' to check the list of available tags.
@@ -127,16 +137,6 @@ cmake -DCMAKE_MODULE_PATH="$MY_TEST_AREA/PandoraPFA/cmakemodules;$ROOTSYS/etc/cm
 make -j4 install
 
 cd $MY_TEST_AREA
-wget http://bitbucket.org/eigen/eigen/get/3.3.3.tar.gz
-tar -xf 3.3.3.tar.gz
-mv eigen-eigen-67e894c6cd8f Eigen3
-cd Eigen3
-mkdir build
-cd build
-cmake -DCMAKE_INSTALL_PREFIX=$MY_TEST_AREA/Eigen3/ ..
-make -j4 install
-
-cd $MY_TEST_AREA
 git clone https://github.com/PandoraPFA/LArContent.git
 cd LArContent
 git checkout $PANDORA_LAR_CONTENT_VERSION
@@ -172,11 +172,6 @@ cd $MY_TEST_AREA/PandoraPFA
 git clone https://github.com/PandoraPFA/PandoraMonitoring.git PandoraMonitoring
 cd PandoraMonitoring
 git checkout $PANDORA_MONITORING_VERSION
-
-cd $MY_TEST_AREA/PandoraPFA
-wget http://bitbucket.org/eigen/eigen/get/3.3.3.tar.gz
-tar -xf 3.3.3.tar.gz
-mv eigen-eigen-67e894c6cd8f Eigen3
 
 cd $MY_TEST_AREA/PandoraPFA
 git clone https://github.com/PandoraPFA/LArContent.git LArContent
@@ -219,11 +214,6 @@ git checkout $PANDORA_MONITORING_VERSION
 mkdir lib
 make -j4 MONITORING=1 PROJECT_DIR=$MY_TEST_AREA/PandoraMonitoring PANDORA_DIR=$MY_TEST_AREA
 make install MONITORING=1 PROJECT_DIR=$MY_TEST_AREA/PandoraMonitoring PANDORA_DIR=$MY_TEST_AREA LIB_TARGET=$MY_TEST_AREA/lib
-
-cd $MY_TEST_AREA
-wget http://bitbucket.org/eigen/eigen/get/3.3.3.tar.gz
-tar -xf 3.3.3.tar.gz
-mv eigen-eigen-67e894c6cd8f Eigen3
 
 cd $MY_TEST_AREA
 git clone https://github.com/PandoraPFA/LArContent.git
