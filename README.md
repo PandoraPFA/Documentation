@@ -54,14 +54,14 @@ environment variables or provide the additional CMake arguments:
 Use 'git tag' to check the list of available tags.
 Current recommended versions are as defined below:
 ```
-export PANDORA_PFA_VERSION=v03-13-00
-export PANDORA_SDK_VERSION=v03-03-02
-export PANDORA_MONITORING_VERSION=v03-04-01
-export PANDORA_LAR_CONTENT_VERSION=v03_15_00
-export PANDORA_LC_CONTENT_VERSION=v03-01-03
-export PANDORA_EXAMPLE_CONTENT_VERSION=v03-00-02
-export PANDORA_LAR_RECO_VERSION=v03-14-05
-export PANDORA_LC_RECO_VERSION=v03-01-03
+export PANDORA_PFA_VERSION=v03-13-01
+export PANDORA_SDK_VERSION=v03-03-03
+export PANDORA_MONITORING_VERSION=v03-04-02
+export PANDORA_LAR_CONTENT_VERSION=v03_15_04
+export PANDORA_LC_CONTENT_VERSION=v03-01-04
+export PANDORA_EXAMPLE_CONTENT_VERSION=v03-00-03
+export PANDORA_LAR_RECO_VERSION=v03-15-04
+export PANDORA_LC_RECO_VERSION=v03-01-04
 
 export MY_TEST_AREA=/path/to/your/test/area
 ```
