@@ -127,9 +127,9 @@ cmake -DCMAKE_MODULE_PATH="$MY_TEST_AREA/PandoraPFA/cmakemodules;$ROOTSYS/etc/cm
 make -j4 install
 
 cd $MY_TEST_AREA
-wget http://bitbucket.org/eigen/eigen/get/3.3.3.tar.gz
-tar -xf 3.3.3.tar.gz
-mv eigen-eigen-67e894c6cd8f Eigen3
+wget http://bitbucket.org/eigen/eigen/get/3.3.4.tar.gz
+tar -xf 3.3.4.tar.gz
+mv eigen-eigen-5a0156e40feb Eigen3
 cd Eigen3
 mkdir build
 cd build
@@ -174,9 +174,9 @@ cd PandoraMonitoring
 git checkout $PANDORA_MONITORING_VERSION
 
 cd $MY_TEST_AREA/PandoraPFA
-wget http://bitbucket.org/eigen/eigen/get/3.3.3.tar.gz
-tar -xf 3.3.3.tar.gz
-mv eigen-eigen-67e894c6cd8f Eigen3
+wget http://bitbucket.org/eigen/eigen/get/3.3.4.tar.gz
+tar -xf 3.3.4.tar.gz
+mv eigen-eigen-5a0156e40feb Eigen3
 
 cd $MY_TEST_AREA/PandoraPFA
 git clone https://github.com/PandoraPFA/LArContent.git LArContent
@@ -221,9 +221,9 @@ make -j4 MONITORING=1 PROJECT_DIR=$MY_TEST_AREA/PandoraMonitoring PANDORA_DIR=$M
 make install MONITORING=1 PROJECT_DIR=$MY_TEST_AREA/PandoraMonitoring PANDORA_DIR=$MY_TEST_AREA LIB_TARGET=$MY_TEST_AREA/lib
 
 cd $MY_TEST_AREA
-wget http://bitbucket.org/eigen/eigen/get/3.3.3.tar.gz
-tar -xf 3.3.3.tar.gz
-mv eigen-eigen-67e894c6cd8f Eigen3
+wget http://bitbucket.org/eigen/eigen/get/3.3.4.tar.gz
+tar -xf 3.3.4.tar.gz
+mv eigen-eigen-5a0156e40feb Eigen3
 
 cd $MY_TEST_AREA
 git clone https://github.com/PandoraPFA/LArContent.git
