@@ -54,7 +54,7 @@ environment variables or provide the additional CMake arguments:
 Use 'git tag' to check the list of available tags.
 Current recommended versions are as defined below:
 ```
-export PANDORA_PFA_VERSION=v03-13-01
+export PANDORA_PFA_VERSION=v03-13-02
 export PANDORA_SDK_VERSION=v03-03-03
 export PANDORA_MONITORING_VERSION=v03-04-02
 export PANDORA_LAR_CONTENT_VERSION=v03_15_04
