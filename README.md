@@ -24,7 +24,7 @@ circumstances, please get in touch: john.marshall AT warwick.ac.uk
 ## Build notes
 1. These instructions have been tested with:
 -CentOS Linux release 7.7.1908, gcc 7.3.0, ROOT 6.18.04
--macOS Catalina, 10.15.3, Apple LLVM version 10.0.0 (clang-1000.11.45.5), ROOT 6.18.99
+-macOS Catalina, 10.15.5, Apple LLVM version 10.0.0 (clang-1000.11.45.5), ROOT 6.18.99
 
 2. Please note that some configurations of the LArReco application now require
 access to files maintained in the PandoraPFA/LArMachineLearningData repository.
@@ -32,10 +32,9 @@ Users requiring these files should clone this repository, checkout the tag
 matching the PANDORA_LAR_CONTENT_VERSION below then add the directory path to
 the colon-separated list stored in the FW_SEARCH_PATH environment variable.
 
-3. c++11 is now mandatory for Pandora packages. Using a version of ROOT built
-when demanding a more recent standard may force you to demand a newer
-standard when building PandoraMonitoring and LC/LArReco, despite the fact that
-these packages themselves only require c++11 support. This may then require
+3. c++17 is now the default option for most Pandora packages, and is mandatory for some.
+In cases where it is not yet mandatory, using a version of e.g. ROOT built when demanding a
+more recent standard may still force you to demand that standard. This may then require
 specification of e.g. the CMake arguments -DCMAKE_CXX_FLAGS=-std=c++17 or similar.
 
 4. Using CMake, the user may find that the identified C and C++
@@ -54,14 +53,14 @@ specified/replaced carefully on some systems.
 Use 'git tag' to check the list of available tags.
 Current recommended versions are as defined below:
 ```
-export PANDORA_PFA_VERSION=v03-14-00
-export PANDORA_SDK_VERSION=v03-03-03
-export PANDORA_MONITORING_VERSION=v03-04-03
-export PANDORA_LAR_CONTENT_VERSION=v03_16_02
-export PANDORA_LC_CONTENT_VERSION=v03-01-04
-export PANDORA_EXAMPLE_CONTENT_VERSION=v03-00-03
-export PANDORA_LAR_RECO_VERSION=v03-16-00
-export PANDORA_LC_RECO_VERSION=v03-01-04
+export PANDORA_PFA_VERSION=v03-15-00
+export PANDORA_SDK_VERSION=v03-04-00
+export PANDORA_MONITORING_VERSION=v03-05-00
+export PANDORA_LAR_CONTENT_VERSION=v03_17_00
+export PANDORA_LC_CONTENT_VERSION=v03-01-05
+export PANDORA_EXAMPLE_CONTENT_VERSION=v03-01-00
+export PANDORA_LAR_RECO_VERSION=v03-17-00
+export PANDORA_LC_RECO_VERSION=v03-01-05
 
 export MY_TEST_AREA=/path/to/your/test/area
 ```
