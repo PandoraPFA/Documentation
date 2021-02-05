@@ -53,13 +53,13 @@ specified/replaced carefully on some systems.
 Use 'git tag' to check the list of available tags.
 Current recommended versions are as defined below:
 ```
-export PANDORA_PFA_VERSION=v03-19-03
+export PANDORA_PFA_VERSION=v03-19-05
 export PANDORA_SDK_VERSION=v03-04-01
 export PANDORA_MONITORING_VERSION=v03-05-00
-export PANDORA_LAR_CONTENT_VERSION=v03_22_03
+export PANDORA_LAR_CONTENT_VERSION=v03_22_05
 export PANDORA_LC_CONTENT_VERSION=v03-01-06
 export PANDORA_EXAMPLE_CONTENT_VERSION=v03-01-00
-export PANDORA_LAR_RECO_VERSION=v03-22-03
+export PANDORA_LAR_RECO_VERSION=v03-22-05
 export PANDORA_LC_RECO_VERSION=v03-01-05
 
 export MY_TEST_AREA=/path/to/your/test/area
@@ -126,9 +126,9 @@ cmake -DCMAKE_MODULE_PATH="$MY_TEST_AREA/PandoraPFA/cmakemodules;$ROOTSYS/etc/cm
 make -j4 install
 
 cd $MY_TEST_AREA
-wget https://gitlab.com/libeigen/eigen/-/archive/3.3.5/eigen-3.3.5.tar.gz
-tar -xf eigen-3.3.5.tar.gz
-mv eigen-3.3.5 Eigen3
+wget https://gitlab.com/libeigen/eigen/-/archive/3.3.9/eigen-3.3.9.tar.gz
+tar -xf eigen-3.3.9.tar.gz
+mv eigen-3.3.9 Eigen3
 cd Eigen3
 mkdir build
 cd build
@@ -173,9 +173,9 @@ cd PandoraMonitoring
 git checkout $PANDORA_MONITORING_VERSION
 
 cd $MY_TEST_AREA/PandoraPFA
-wget https://gitlab.com/libeigen/eigen/-/archive/3.3.5/eigen-3.3.5.tar.gz
-tar -xf eigen-3.3.5.tar.gz
-mv eigen-3.3.5 Eigen3
+wget https://gitlab.com/libeigen/eigen/-/archive/3.3.9/eigen-3.3.9.tar.gz
+tar -xf eigen-3.3.9.tar.gz
+mv eigen-3.3.9 Eigen3
 
 cd $MY_TEST_AREA/PandoraPFA
 git clone https://github.com/PandoraPFA/LArContent.git LArContent
@@ -220,9 +220,9 @@ make -j4 MONITORING=1 PROJECT_DIR=$MY_TEST_AREA/PandoraMonitoring PANDORA_DIR=$M
 make install MONITORING=1 PROJECT_DIR=$MY_TEST_AREA/PandoraMonitoring PANDORA_DIR=$MY_TEST_AREA LIB_TARGET=$MY_TEST_AREA/lib
 
 cd $MY_TEST_AREA
-wget https://gitlab.com/libeigen/eigen/-/archive/3.3.5/eigen-3.3.5.tar.gz
-tar -xf eigen-3.3.5.tar.gz
-mv eigen-3.3.5 Eigen3
+wget https://gitlab.com/libeigen/eigen/-/archive/3.3.9/eigen-3.3.9.tar.gz
+tar -xf eigen-3.3.9.tar.gz
+mv eigen-3.3.9 Eigen3
 
 cd $MY_TEST_AREA
 git clone https://github.com/PandoraPFA/LArContent.git
