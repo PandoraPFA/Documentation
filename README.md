@@ -29,8 +29,8 @@ circumstances, please get in touch: john.marshall AT warwick.ac.uk
 2. Please note that some configurations of the LArReco application now require
 access to files maintained in the PandoraPFA/LArMachineLearningData repository.
 Users requiring these files should clone this repository, checkout the tag 
-matching the PANDORA_LAR_RECO_VERSION below then add the directory path to
-the colon-separated list stored in the FW_SEARCH_PATH environment variable.
+matching the PANDORA_LAR_RECO_VERSION below then **add the directory path to
+the colon-separated list stored in the FW_SEARCH_PATH environment variable**.
 
 3. c++17 is now the default option for most Pandora packages, and is mandatory for some.
 In cases where it is not yet mandatory, using a version of e.g. ROOT built when demanding a
@@ -53,13 +53,13 @@ specified/replaced carefully on some systems.
 Use 'git tag' to check the list of available tags.
 Current recommended versions are as defined below:
 ```
-export PANDORA_PFA_VERSION=v03-19-05
+export PANDORA_PFA_VERSION=v03-19-06
 export PANDORA_SDK_VERSION=v03-04-01
 export PANDORA_MONITORING_VERSION=v03-05-00
-export PANDORA_LAR_CONTENT_VERSION=v03_22_05
+export PANDORA_LAR_CONTENT_VERSION=v03_22_06
 export PANDORA_LC_CONTENT_VERSION=v03-01-06
 export PANDORA_EXAMPLE_CONTENT_VERSION=v03-01-00
-export PANDORA_LAR_RECO_VERSION=v03-22-05
+export PANDORA_LAR_RECO_VERSION=v03-22-06
 export PANDORA_LC_RECO_VERSION=v03-01-05
 
 export MY_TEST_AREA=/path/to/your/test/area
@@ -153,6 +153,13 @@ cd build
 cmake -DCMAKE_MODULE_PATH="$MY_TEST_AREA/PandoraPFA/cmakemodules;$ROOTSYS/etc/cmake" -DPANDORA_MONITORING=ON -DPandoraSDK_DIR=$MY_TEST_AREA/PandoraSDK/ -DPandoraMonitoring_DIR=$MY_TEST_AREA/PandoraMonitoring/ -DLArContent_DIR=$MY_TEST_AREA/LArContent/ ..
 make -j4 install
 
+### LArMachineLearningData: If your configuration depends on LArMachineLearningData
+cd $MY_TEST_AREA
+git clone https://github.com/PandoraPFA/LArMachineLearningData.git
+cd LArMachineLearningData
+git checkout $PANDORA_LAR_RECO_VERSION
+## End LArMachineLearningData
+
 $MY_TEST_AREA/LArReco/bin/PandoraInterface -h # as for example 1.
 ```
 ## 3. Using simple Makefiles and the PandoraPFA metadata package
@@ -193,6 +200,13 @@ cd LArReco
 git checkout $PANDORA_LAR_RECO_VERSION
 mkdir bin
 make -j4 MONITORING=1 PROJECT_DIR=$MY_TEST_AREA/LArReco PANDORA_DIR=$MY_TEST_AREA/PandoraPFA
+
+### LArMachineLearningData: If your configuration depends on LArMachineLearningData
+cd $MY_TEST_AREA
+git clone https://github.com/PandoraPFA/LArMachineLearningData.git
+cd LArMachineLearningData
+git checkout $PANDORA_LAR_RECO_VERSION
+## End LArMachineLearningData
 
 export LD_LIBRARY_PATH=$MY_TEST_AREA/PandoraPFA/lib:$LD_LIBRARY_PATH
 
@@ -238,6 +252,13 @@ cd LArReco
 git checkout $PANDORA_LAR_RECO_VERSION
 mkdir bin
 make -j4 MONITORING=1 PROJECT_DIR=$MY_TEST_AREA/LArReco PANDORA_DIR=$MY_TEST_AREA
+
+### LArMachineLearningData: If your configuration depends on LArMachineLearningData
+cd $MY_TEST_AREA
+git clone https://github.com/PandoraPFA/LArMachineLearningData.git
+cd LArMachineLearningData
+git checkout $PANDORA_LAR_RECO_VERSION
+## End LArMachineLearningData
 
 $MY_TEST_AREA/LArReco/bin/PandoraInterface -h # as for example 1.
 ```
