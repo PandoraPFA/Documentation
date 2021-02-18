@@ -53,13 +53,13 @@ specified/replaced carefully on some systems.
 Use 'git tag' to check the list of available tags.
 Current recommended versions are as defined below:
 ```
-export PANDORA_PFA_VERSION=v03-19-06
+export PANDORA_PFA_VERSION=v03-19-07
 export PANDORA_SDK_VERSION=v03-04-01
 export PANDORA_MONITORING_VERSION=v03-05-00
-export PANDORA_LAR_CONTENT_VERSION=v03_22_06
+export PANDORA_LAR_CONTENT_VERSION=v03_22_07
 export PANDORA_LC_CONTENT_VERSION=v03-01-06
 export PANDORA_EXAMPLE_CONTENT_VERSION=v03-01-00
-export PANDORA_LAR_RECO_VERSION=v03-22-06
+export PANDORA_LAR_RECO_VERSION=v03-22-07
 export PANDORA_LC_RECO_VERSION=v03-01-05
 
 export MY_TEST_AREA=/path/to/your/test/area
