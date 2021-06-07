@@ -49,10 +49,10 @@ that the user has already built ROOT, including the EVE libraries.
 The environment variable ROOTSYS is used below and may need to be
 specified/replaced carefully on some systems.
 
-6. LArContent v03_20_00 adds process information to LArMCParticles by default, for pndr
+6. LArContent v03_23_00 adds process information to LArMCParticles by default, for pndr
 files created with earlier versions of LArContent it is necessary to specify
 `<LArMCParticleVersion>1</LArMCParticleVersion>` in the LArEventReading algorithm XML
-configuration. For pndr files created since v03_20_00, this version number should be
+configuration. For pndr files created since v03_23_00, this version number should be
 removed, or updated to version 2.
 
 ## Recommended library/application versions
