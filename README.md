@@ -49,17 +49,23 @@ that the user has already built ROOT, including the EVE libraries.
 The environment variable ROOTSYS is used below and may need to be
 specified/replaced carefully on some systems.
 
+6. LArContent v03_20_00 adds process information to LArMCParticles by default, for pndr
+files created with earlier versions of LArContent it is necessary to specify
+`<LArMCParticleVersion>1</LArMCParticleVersion>` in the LArEventReading algorithm XML
+configuration. For pndr files created since v03_20_00, this version number should be
+removed, or updated to version 2.
+
 ## Recommended library/application versions
 Use 'git tag' to check the list of available tags.
 Current recommended versions are as defined below:
 ```
-export PANDORA_PFA_VERSION=v03-19-12
+export PANDORA_PFA_VERSION=v03-20-01
 export PANDORA_SDK_VERSION=v03-04-01
 export PANDORA_MONITORING_VERSION=v03-05-00
-export PANDORA_LAR_CONTENT_VERSION=v03_22_11_01
+export PANDORA_LAR_CONTENT_VERSION=v03_23_01
 export PANDORA_LC_CONTENT_VERSION=v03-01-06
 export PANDORA_EXAMPLE_CONTENT_VERSION=v03-01-00
-export PANDORA_LAR_RECO_VERSION=v03-22-11
+export PANDORA_LAR_RECO_VERSION=v03-23-01
 export PANDORA_LC_RECO_VERSION=v03-01-05
 
 export MY_TEST_AREA=/path/to/your/test/area
