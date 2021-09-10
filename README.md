@@ -29,8 +29,9 @@ circumstances, please get in touch: john.marshall AT warwick.ac.uk
 2. Please note that some configurations of the LArReco application now require
 access to files maintained in the PandoraPFA/LArMachineLearningData repository.
 Users requiring these files should clone this repository, checkout the tag 
-matching the PANDORA_LAR_RECO_VERSION below then **add the directory path to
-the colon-separated list stored in the FW_SEARCH_PATH environment variable**.
+matching the PANDORA_LAR_RECO_VERSION below, run the download.sh script (see examples below)
+then **add the directory path to the colon-separated list stored in the FW_SEARCH_PATH
+environment variable**.
 
 3. c++17 is now the default option for most Pandora packages, and is mandatory for some.
 In cases where it is not yet mandatory, using a version of e.g. ROOT built when demanding a
@@ -164,6 +165,7 @@ cd $MY_TEST_AREA
 git clone https://github.com/PandoraPFA/LArMachineLearningData.git
 cd LArMachineLearningData
 git checkout $PANDORA_LAR_RECO_VERSION
+source download.sh
 ## End LArMachineLearningData
 
 $MY_TEST_AREA/LArReco/bin/PandoraInterface -h # as for example 1.
@@ -212,6 +214,7 @@ cd $MY_TEST_AREA
 git clone https://github.com/PandoraPFA/LArMachineLearningData.git
 cd LArMachineLearningData
 git checkout $PANDORA_LAR_RECO_VERSION
+source download.sh
 ## End LArMachineLearningData
 
 export LD_LIBRARY_PATH=$MY_TEST_AREA/PandoraPFA/lib:$LD_LIBRARY_PATH
@@ -264,6 +267,7 @@ cd $MY_TEST_AREA
 git clone https://github.com/PandoraPFA/LArMachineLearningData.git
 cd LArMachineLearningData
 git checkout $PANDORA_LAR_RECO_VERSION
+source download.sh
 ## End LArMachineLearningData
 
 $MY_TEST_AREA/LArReco/bin/PandoraInterface -h # as for example 1.
