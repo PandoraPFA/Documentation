@@ -60,7 +60,7 @@ removed, or updated to version 2.
 Use 'git tag' to check the list of available tags.
 Current recommended versions are as defined below:
 ```
-export PANDORA_PFA_VERSION=v03-22-00
+export PANDORA_PFA_VERSION=v03-23-00
 export PANDORA_SDK_VERSION=v03-04-01
 export PANDORA_MONITORING_VERSION=v03-05-00
 export PANDORA_LAR_CONTENT_VERSION=v03_26_00
