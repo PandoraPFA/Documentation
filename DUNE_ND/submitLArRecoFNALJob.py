@@ -29,11 +29,8 @@ class parameters(object):
         # Job memory requirement (default = 2GB)
         self.memory = memory
         
-        # Home directory
-        self.home = os.getenv('HOME')
-        # Pandora release directory, assumed to be "$HOME/app/Pandora"
-        self.pandoraName = 'Pandora'
-        self.pandoraDir = '{0}/app/{1}'.format(self.home, self.pandoraName)
+        # Test area directory
+        self.myTestArea = os.getenv('MY_TEST_AREA')
 
         # LArReco executable settings
         self.recoExe = 'LArReco/bin/PandoraInterface'
@@ -47,6 +44,7 @@ class parameters(object):
         
         # Scratch area for batch jobs:
         self.user = os.getenv('USER')
+        self.pandoraName = 'Pandora'
         self.baseJob = '/pnfs/dune/scratch/users/{0}/{1}'.format(self.user, self.pandoraName)
         # Job scratch directory location
         self.jobDir = '{0}/{1}/{1}_{2}_{3}'.format(self.baseJob, self.label, self.sample, self.jobName)
@@ -86,7 +84,7 @@ def run(pars):
         print('Creating {0}'.format(pars.pandoraTarFile))
         # List of required install packages
         pgkList = ' '.join([str(pkg) for pkg in pars.pandoraPkgs])
-        tarCmd = 'tar -czf {0} -C {1} {2}'.format(pars.pandoraTarFile, pars.pandoraDir, pgkList)
+        tarCmd = 'tar -czf {0} -C {1} {2}'.format(pars.pandoraTarFile, pars.myTestArea, pgkList)
         print('tarCmd = {0}'.format(tarCmd))
         os.system(tarCmd)
     else:
