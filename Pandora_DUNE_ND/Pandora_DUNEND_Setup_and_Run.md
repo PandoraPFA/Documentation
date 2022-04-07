@@ -3,7 +3,9 @@ _29/3/2022_
 
 
 **Create a setup file**
-Make sure your computer can use CVMFS. 
+
+Make sure your computer can use CVMFS.
+ 
 Create a file called “setup.sh”. It should look something like:
 ```C++
 source /cvmfs/dune.opensciencegrid.org/products/dune/setup_dune.sh
@@ -26,7 +28,7 @@ setup genie_xsec v3_00_04 -q G1810a0211a:e1000:k250
 
 export MY_TEST_AREA=`pwd`
 ```
-The run `source setup.sh` 
+The run `source setup.sh`. 
 
 
 **Getting edep-sim**
@@ -50,7 +52,9 @@ export PATH=/YOUR/PATH/edep-sim/install/bin:$PATH
 
 
 **Getting Pandora**
+
 Follow #2 at this link: https://github.com/PandoraPFA/Documentation in the area where your setup script is. 
+
 If a command says it can’t find something, try running a second time, and normally it will find it. 
 
 Then add this to your setup script:
@@ -79,19 +83,24 @@ This should now be setup to run. May need to delete and remake the build folder 
 
 
 **Get some files to work with**
-You should know which ones you want to work with, but we shall used some from here as an example: /pnfs/dune/persistent/users/jback/EdepSimFiles/particles_UniBox/
+
+You should know which ones you want to work with, but we shall used some from here as an example: `/pnfs/dune/persistent/users/jback/EdepSimFiles/particles_UniBox/`
 
 
 **Run**
+
 An example of a run command, given in the LArReco dir is:
 `./bin/PandoraInterface -i settings/PandoraSettings_EDepReco.xml -r AllHitsCR -j LArTPC -N -n 1000 -e muPlus_0p1GeV.root`
 
-You can handscan with the file as is, or remove visual monitoring to run through all events. You can use the -r option to change between the cosmic and neutrino hypotheses with __allhitscr_ and __allhitsnu_.
+You can handscan with the file as is, or remove visual monitoring to run through all events. You can use the -r option to change between the cosmic and neutrino hypotheses with _allhitscr_ and _allhitsnu_.
 
 
 **Validation**
+
 This running should have produced a file called Validation.root.
+
 If any histogram parameters need to be adjusted, this can be done in validation/Validation.C.
+
 Now produce a file containing needed histograms; choose the ones you want:
 ```C++
 root -l
@@ -115,10 +124,11 @@ ALL_INTERACTIONS_VtxDeltaR->Write("ALL_INTERACTIONS_VtxDeltaR")
 This will now have produced and filled ValidationHistograms.root.
 
 Note – if you wish to view the files within ROOT, you can use
-HIST_NAME->Draw(“hist”).
+`HIST_NAME->Draw(“hist”)`.
 
 
 **Viewing the histograms**
+
 You can then either write your own file to view and arrange the histograms as you please from the ValidationHistograms.root file, or if you wish to overlay them like I have done, you can use overlayHistograms.cc. That can currently be found here: https://github.com/afm1g15/LArReco/blob/feature/edep-reco-alex/overlayHistograms.cc.
 
 To run:
