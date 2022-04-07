@@ -28,7 +28,7 @@ setup genie_xsec v3_00_04 -q G1810a0211a:e1000:k250
 
 export MY_TEST_AREA=`pwd`
 ```
-The run `source setup.sh`. 
+Then run `source setup.sh`. 
 
 
 **Getting edep-sim**
