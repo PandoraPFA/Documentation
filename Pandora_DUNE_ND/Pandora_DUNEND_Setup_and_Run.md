@@ -7,7 +7,7 @@ _29/3/2022_
 Make sure your computer can use CVMFS.
  
 Create a file called “setup.sh”. It should look something like:
-```C++
+```Shell
 source /cvmfs/dune.opensciencegrid.org/products/dune/setup_dune.sh
 
 export LIBGL_ALWAYS_SOFTWARE=1
@@ -32,7 +32,7 @@ Then run `source setup.sh`.
 
 
 **Getting edep-sim**
-```C++
+```Shell
 git clone https://github.com/ClarkMcGrew/edep-sim
 cd edep-sim
 source setup.sh
@@ -45,7 +45,7 @@ make -j4 install
 Note – if it is complaining, try running this separately (setup geant4 v4_10_6_p01c -q e19:prof), then make again. Just push through if it lets you, it seems to have an issue with finding geant.
 
 I would then add these to your setup.sh:
-```C++
+```Shell
 export LD_LIBRARY_PATH=/YOUR/PATH/edep-sim/install/lib:$LD_LIBRARY_PATH
 export PATH=/YOUR/PATH/edep-sim/install/bin:$PATH
 ```
@@ -58,7 +58,7 @@ Follow #2 at this link: https://github.com/PandoraPFA/Documentation in the area 
 If a command says it can’t find something, try running a second time, and normally it will find it. 
 
 Then add this to your setup script:
-```C++
+```Shell
 export MY_TEST_AREA=`pwd`
 cd YOUR/PATH/LArMachineLearningData/PandoraMVAData
 export FW_SEARCH_PATH=$FW_SEARCH_PATH:`pwd`
@@ -71,7 +71,7 @@ export FW_SEARCH_PATH=$FW_SEARCH_PATH:`pwd`
 cd $MY_TEST_AREA
 ```
 Now get the right branch:
-```C++
+```Shell
 cd LArReco
 git checkout remotes/origin/feature/edep-reco
 mkdir build
