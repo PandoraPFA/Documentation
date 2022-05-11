@@ -1,5 +1,5 @@
 # Setup and Running of Pandora ND
-_29/3/2022_
+_2/5/2022_
 
 
 **Create a setup file**
@@ -42,7 +42,7 @@ cd build
 cmake -DCMAKE_INSTALL_PREFIX=/YOUR/PATH/edep-sim/install ..
 make -j4 install
 ```
-Note – if it is complaining, try running this separately (setup geant4 v4_10_6_p01c -q e19:prof), then make again. Just push through if it lets you, it seems to have an issue with finding geant.
+Note – if it is complaining, try running this separately (setup geant4 v4_10_6_p01c -q e19:prof), then make again. Just push through if it lets you, it seems to have an issue with finding geant. Or try this as the cmake command: `cmake -DCMAKE_INSTALL_PREFIX=${EDEP_ROOT}/install -DGeant4_DIR=/cvmfs/larsoft.opensciencegrid.org/products/geant4/v4_10_6_p01c/Linux64bit+3.10-2.17-e19-prof/lib64/Geant4-10.6.1 ..`
 
 I would then add these to your setup.sh:
 ```Shell
@@ -92,8 +92,34 @@ You should know which ones you want to work with, but we shall used some from he
 An example of a run command, given in the LArReco dir is:
 `./bin/PandoraInterface -i settings/PandoraSettings_EDepReco.xml -r AllHitsCR -j LArTPC -N -n 1000 -e muPlus_0p1GeV.root`
 
-You can handscan with the file as is, or remove visual monitoring to run through all events. You can use the -r option to change between the cosmic and neutrino hypotheses with _allhitscr_ and _allhitsnu_.
+You can handscan with the file as is, or remove visual monitoring to run through all events. You can use the -r option to change between the cosmic and neutrino hypotheses with _allhitscr_ and _allhitsnu_. Use `PandoraSettings_EDepReco.xml` for cosmic and `PandoraSettings_EDepReco_TestBeam.xml`for neutrino. The latter makes use of the test beam event validation. 
 
+Note - to make the test beam validation work, two things needs to be changed with hardcode for this. In `/LArContent/larpandoracontent/LArHelpers/LArMCParticleHelper.cc`, the `IsBeamParticle` nuance code must be hardcoded to be 2001. This can be done as follows, changing the PDG code as needed:
+
+```C++
+bool LArMCParticleHelper::IsBeamParticle(const MCParticle *const pMCParticle)
+{
+    int nuance(LArMCParticleHelper::GetNuanceCode(pMCParticle));
+    //debug
+    if(std::abs(pMCParticle->GetParticleId()) == 11){
+      std::cout << "[WARNING] Changing the nuance code for all electrons/positrons from 1000 to 2001 in TestBeam hypothesis" << std::endl;
+      nuance=2001;
+    }
+    return (LArMCParticleHelper::IsPrimary(pMCParticle) && ((nuance == 2000) || (nuance == 2001)));
+}
+``` 
+
+The second thing is around line 157 of Validation.C. It should look something like this:
+```C++
+pTChain->GetEntry(iEntry + iTarget++);
+
+//debug
+simpleMCTarget.m_mcNuanceCode = 2001;
+std::cout << "[WARNING] simpleMCTarget.m_mcNuanceCode in ReadNextEvent is hard coded to be 2001 so beware!" << std::endl;
+
+if (simpleMCEvent.m_eventNumber != thisEventNumber)
+    break;
+```
 
 **Validation**
 
@@ -105,12 +131,13 @@ Now produce a file containing needed histograms; choose the ones you want:
 ```C++
 root -l
 TFile *f2 = new TFile("ValidationHistograms.root", "CREATE")
-.L /usera/afm67/2021/September/NDLAr_Day1_Testing/LArReco/validation/Validation.C+
+.L /YOUR/PATH/LArReco/validation/Validation.C+
 Parameters p
-p.m_testBeamMode=true (true for test beam, false for cosmic)
+p.m_testBeamMode=false (true for test beam, false for cosmic)
 p.m_applyUbooneFiducialCut=false
 p.m_histogramOutput=true
 p.m_displayMatchedEvents=true
+p.m_vertexXCorrection = 0.0
 Validation("Validation.root", p)
 ALL_INTERACTIONS_MUON_HitsEfficiency->Write("ALL_INTERACTIONS_MUON_HitsEfficiency")
 ALL_INTERACTIONS_MUON_MomentumEfficiency->Write("ALL_INTERACTIONS_MUON_MomentumEfficiency")
@@ -138,4 +165,4 @@ root -l
 ```
 The large number of commands is there if one wants to overlay every single generated histogram. However, for many of the histograms (e.g. VtxDeltaR) I have just been overlaying four energies (0.1GeV, 0.5GeV, 1.5GeV, 4.0GeV) and filling the rest with dummy variables. 
 
-This file will do basic cosmic changes, but anything more requires going into Validation.C and re running. 
+This file will do basic cosmetic changes, but anything more requires going into Validation.C and re running. 
