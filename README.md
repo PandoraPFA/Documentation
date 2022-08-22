@@ -23,7 +23,7 @@ circumstances, please get in touch: john.marshall AT warwick.ac.uk
 
 ## Build notes
 1. These instructions have been tested with:
--CentOS Linux release 7.7.1908, gcc 7.3.0, ROOT 6.18.04
+-CentOS Linux release 7.7.1908, gcc 8.2.0, ROOT 6.18.04
 -macOS Catalina, 10.15.5, Apple LLVM version 10.0.0 (clang-1000.11.45.5), ROOT 6.18.99
 
 2. Please note that some configurations of the LArReco application now require
@@ -56,17 +56,41 @@ files created with earlier versions of LArContent it is necessary to specify
 configuration. For pndr files created since v03_23_00, this version number should be
 removed, or updated to version 2.
 
+## Deep Learning updates
+LArContent v04_00_00 introduces vertex finding via a deep neural network. The DUNEFD
+horizontal drift beam configuration makes use of this feature by default. This adds a
+requirement for LibTorch for this use case, necessitating updates to the build. In particular,
+access to a LibTorch installation is required. For the current use case this can be achieved
+via
+```
+source /cvmfs/dune.opensciencegrid.org/products/dune/setup_dune.sh
+setup libtorch v1_6_0d -q e20
+```
+Alternatively, you can install LibTorch locally. The cmake commands must then be updated,
+in particular, the LArReco and LArContent (or PandoraPFA in the version 1 build below)
+cmake commands should now each include
+```
+-DPANDORA_LIBTORCH=ON
+```
+along with corresponding additions to the CMAKE_PREFIX_PATH for LArContent
+```
+-DCMAKE_PREFIX_PATH=/cvmfs/larsoft.opensciencegrid.org/products/libtorch/v1_6_0d/Linux64bit+3.10-2.17-e20/share/cmake
+```
+and finally the LArReco cmake command should also include
+```
+-DLArDLContent_DIR=$MY_TEST_AREA/LArContent/
+```
 ## Recommended library/application versions
 Use 'git tag' to check the list of available tags.
 Current recommended versions are as defined below:
 ```
-export PANDORA_PFA_VERSION=v03-25-03
+export PANDORA_PFA_VERSION=v04-00-00
 export PANDORA_SDK_VERSION=v03-04-01
 export PANDORA_MONITORING_VERSION=v03-05-00
-export PANDORA_LAR_CONTENT_VERSION=v03_28_03
+export PANDORA_LAR_CONTENT_VERSION=v04_00_00
 export PANDORA_LC_CONTENT_VERSION=v03-01-06
 export PANDORA_EXAMPLE_CONTENT_VERSION=v03-01-00
-export PANDORA_LAR_RECO_VERSION=v03-28-03
+export PANDORA_LAR_RECO_VERSION=v04-00-00
 export PANDORA_LC_RECO_VERSION=v03-01-05
 
 export MY_TEST_AREA=/path/to/your/test/area
