@@ -47,9 +47,9 @@ Constructor initialisation lists are defined for each constructor of a class and
 
 ```C++
 MyClassName::MyClassName() :
-   m_myVariable1{0},
-   m_myVariable2{0},
-   m_myVariable3{0}
+    m_myVariable1{0},
+    m_myVariable2{0},
+    m_myVariable3{0}
 {
     ...
 }
