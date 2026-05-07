@@ -104,7 +104,46 @@ export PANDORA_LC_RECO_VERSION=v03-01-05
 
 export MY_TEST_AREA=/path/to/your/test/area
 ```
-
+## Building Pandora v5
+These instructions will be replaced with installation scripts in due course. Building with AI/ML support requires a libtorch installation (we recommend at least LibTorch 2.1). Here it is assumed that the top-level LibTorch installation directory is set in the environment variable `LIBTORCH`, such that the `share/cmake` path is accessible via `${LIBTORCH}/share/cmake`.
+### SDK
+```
+cd $MY_TEST_AREA/PandoraSDK
+cmake -S . -B build
+cmake --build build --parallel 4
+cmake --install build
+```
+### Monitoring
+```
+cd $MY_TEST_AREA/PandoraMonitoring
+cmake -S . -B build -D CMAKE_PREFIX_PATH=$MY_TEST_AREA/PandoraSDK/build/install
+cmake --build build --target install --parallel 4
+```
+### LArContent (with AI/ML support)
+```
+cd $MY_TEST_AREA/LArContent
+cmake -S . -B build -D CMAKE_PREFIX_PATH="$MY_TEST_AREA/PandoraSDK/build/install;$MY_TEST_AREA/PandoraMonitoring/build/install;${LIBTORCH}/share/cmake" -D PANDORA_LIBTORCH=ON
+cmake --build build --target install --parallel 4
+```
+### LArContent (without AI/ML support)
+```
+cd $MY_TEST_AREA/LArContent
+cmake -S . -B build -D CMAKE_PREFIX_PATH="$MY_TEST_AREA/PandoraSDK/build/install;$MY_TEST_AREA/PandoraMonitoring/build/install;"
+cmake --build build --target install --parallel 4
+```
+### LArReco (with AI/ML support)
+```
+cd $MY_TEST_AREA/LArReco
+cmake -S . -B build -D CMAKE_PREFIX_PATH="$MY_TEST_AREA/PandoraSDK/build/install;$MY_TEST_AREA/PandoraMonitoring/build/install;$MY_TEST_AREA/LArContent/build/install;${LIBTORCH}/share/cmake" -D PANDORA_LIBTORCH=ON
+cmake --build build --target install --parallel 4
+```
+### LArReco (without AI/ML support)
+```
+cd $MY_TEST_AREA/LArReco
+cmake -S . -B build -D CMAKE_PREFIX_PATH="$MY_TEST_AREA/PandoraSDK/build/install;$MY_TEST_AREA/PandoraMonitoring/build/install;$MY_TEST_AREA/LArContent/build/install;"
+cmake --build build --target install --parallel 4
+```
+## Building Pandora v4
 ## 1. Using CMake and the PandoraPFA metadata package
 ```
 cd $MY_TEST_AREA
