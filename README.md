@@ -143,6 +143,20 @@ cd $MY_TEST_AREA/LArReco
 cmake -S . -B build -D CMAKE_PREFIX_PATH="$MY_TEST_AREA/PandoraSDK/build/install;$MY_TEST_AREA/PandoraMonitoring/build/install;$MY_TEST_AREA/LArContent/build/install;"
 cmake --build build --target install --parallel 4
 ```
+### Running Pandora
+```
+$MY_TEST_AREA/LArReco/build/install/bin/PandoraInterface -h
+
+./bin/PandoraInterface
+    -r RecoOption          (required) [Full, AllHitsCR, AllHitsNu, CRRemHitsSliceCR, CRRemHitsSliceNu, AllHitsSliceCR, AllHitsSliceNu]
+    -i Settings            (required) [algorithm description: xml]
+    -e EventFileList       (optional) [colon-separated list of files: xml/pndr]
+    -g GeometryFile        (optional) [detector geometry description: xml/pndr]
+    -n NEventsToProcess    (optional) [no. of events to process]
+    -s NEventsToSkip       (optional) [no. of events to skip in first file]
+    -p                     (optional) [print status]
+    -N                     (optional) [print event numbers]
+```
 ## Building Pandora v4
 ## 1. Using CMake and the PandoraPFA metadata package
 ```
