@@ -119,6 +119,18 @@ cd $MY_TEST_AREA/PandoraMonitoring
 cmake -S . -B build -D CMAKE_PREFIX_PATH=$MY_TEST_AREA/PandoraSDK/build/install
 cmake --build build --target install --parallel 4
 ```
+### Eigen
+```
+cd $MY_TEST_AREA
+wget https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz
+tar -xf eigen-3.4.0.tar.gz
+mv eigen-3.4.0 Eigen3
+cd Eigen3
+mkdir build
+cd build
+cmake -DCMAKE_INSTALL_PREFIX=$MY_TEST_AREA/Eigen3/ ..
+make -j4 install
+```
 ### LArContent (with AI/ML support)
 ```
 cd $MY_TEST_AREA/LArContent
