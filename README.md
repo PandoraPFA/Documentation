@@ -85,11 +85,11 @@ Use 'git tag' to check the list of available tags.
 Current recommended versions are defined below. Currently, for LAr applications the v05 release is recommended. For LC applications v04 release is recommended, pending LCContent and LCReco upgrades to v5:
 ### LAr applications
 ```
-export PANDORA_PFA_VERSION=v05-01-00
+export PANDORA_PFA_VERSION=v05-02-00
 export PANDORA_SDK_VERSION=v05-00-00
 export PANDORA_MONITORING_VERSION=v05-00-00
-export PANDORA_LAR_CONTENT_VERSION=v05_01_00
-export PANDORA_LAR_RECO_VERSION=v05-01-00
+export PANDORA_LAR_CONTENT_VERSION=v05_02_00
+export PANDORA_LAR_RECO_VERSION=v05-02-00
 
 export MY_TEST_AREA=/path/to/your/test/area
 ```
