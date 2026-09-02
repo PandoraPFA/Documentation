@@ -82,23 +82,23 @@ and finally the LArReco cmake command should also include
 ```
 ## Recommended library/application versions
 Use 'git tag' to check the list of available tags.
-Current recommended versions are defined below. Currently, for LAr applications the v05 release is recommended. For LC applications v04 release is recommended, pending LCContent and LCReco upgrades to v5:
+Current recommended versions are defined below. Please note, LC applications are now supported in v05:
 ### LAr applications
 ```
-export PANDORA_PFA_VERSION=v05-02-00
+export PANDORA_PFA_VERSION=v05-04-00
 export PANDORA_SDK_VERSION=v05-00-00
 export PANDORA_MONITORING_VERSION=v05-00-00
-export PANDORA_LAR_CONTENT_VERSION=v05_02_00
-export PANDORA_LAR_RECO_VERSION=v05-02-00
+export PANDORA_LAR_CONTENT_VERSION=v05_04_00
+export PANDORA_LAR_RECO_VERSION=v05-04-00
 
 export MY_TEST_AREA=/path/to/your/test/area
 ```
 ### LC applications
 ```
-export PANDORA_PFA_VERSION=v04-19-05
-export PANDORA_SDK_VERSION=v04-01-00
-export PANDORA_MONITORING_VERSION=v04-00-03
-export PANDORA_LC_CONTENT_VERSION=v03-02-00
+export PANDORA_PFA_VERSION=v05-04-00
+export PANDORA_SDK_VERSION=v05-00-00
+export PANDORA_MONITORING_VERSION=v05-00-00
+export PANDORA_LC_CONTENT_VERSION=v05-00-00
 export PANDORA_EXAMPLE_CONTENT_VERSION=v03-01-00
 export PANDORA_LC_RECO_VERSION=v03-01-05
 
@@ -169,7 +169,7 @@ $MY_TEST_AREA/LArReco/build/install/bin/PandoraInterface -h
     -p                     (optional) [print status]
     -N                     (optional) [print event numbers]
 ```
-## Building Pandora v4
+## Building Pandora v4 (legacy)
 ## 1. Using CMake and the PandoraPFA metadata package
 ```
 cd $MY_TEST_AREA
