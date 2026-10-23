@@ -85,20 +85,20 @@ Use 'git tag' to check the list of available tags.
 Current recommended versions are defined below. Please note, LC applications are now supported in v05:
 ### LAr applications
 ```
-export PANDORA_PFA_VERSION=v05-06-00
+export PANDORA_PFA_VERSION=v05-08-00
 export PANDORA_SDK_VERSION=v05-01-00
 export PANDORA_MONITORING_VERSION=v05-00-00
-export PANDORA_LAR_CONTENT_VERSION=v05_06_00
-export PANDORA_LAR_RECO_VERSION=v05-06-00
+export PANDORA_LAR_CONTENT_VERSION=v05_08_00
+export PANDORA_LAR_RECO_VERSION=v05-08-00
 
 export MY_TEST_AREA=/path/to/your/test/area
 ```
 ### LC applications
 ```
-export PANDORA_PFA_VERSION=v05-06-00
-export PANDORA_SDK_VERSION=v05-00-00
+export PANDORA_PFA_VERSION=v05-08-00
+export PANDORA_SDK_VERSION=v05-01-00
 export PANDORA_MONITORING_VERSION=v05-00-00
-export PANDORA_LC_CONTENT_VERSION=v05-00-00
+export PANDORA_LC_CONTENT_VERSION=v05-01-01
 export PANDORA_EXAMPLE_CONTENT_VERSION=v03-01-00
 export PANDORA_LC_RECO_VERSION=v03-01-05
 
